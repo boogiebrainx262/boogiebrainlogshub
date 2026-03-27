@@ -49,7 +49,37 @@
   <div class="balance">₦0.00</div>
 </header>
 
-<div class="container">
+<div class="container" id="product-container">
+  <h2>Loading products...</h2>
+</div>
+
+<script>
+const container = document.getElementById("product-container");
+fetch("https://boogiebrain-backend.onrender.com/products")
+  .then(res => res.json())
+  .then(products => {
+    container.innerHTML = "";
+    products.forEach(p => {
+      const div = document.createElement("div");
+      div.className = "product";
+      div.innerHTML = `
+        <h3>${p.name}</h3>
+        <p>₦${p.price}</p>
+        <button onclick="buyProduct(${p.id}, '${p.name}', ${p.price})">Buy</button>
+      `;
+      container.appendChild(div);
+    });
+  })
+  .catch(err => {
+    container.innerHTML = "<p>Failed to load products</p>";
+    console.error(err);
+  });
+
+function buyProduct(id, name, price) {
+  alert(`You clicked BUY for ${name} (₦${price})`);
+  // Later: connect to wallet & checkout
+}
+</script>
 
 <h2>Premium Accounts • Instant Delivery • Secure Wallet</h2>
 
