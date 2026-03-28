@@ -121,4 +121,17 @@ function buyProduct(id, name, price) {
 function updateCart() {
   console.log("Cart:", cart);
 }
-</script>
+</script>function updateCart() {
+  const cartDiv = document.getElementById("cart-items");
+  const totalDiv = document.getElementById("total");
+
+  cartDiv.innerHTML = "";
+  let total = 0;
+
+  cart.forEach(item => {
+    total += item.price;
+    cartDiv.innerHTML += `<p>${item.name} - ₦${item.price}</p>`;
+  });
+
+  totalDiv.innerText = "Total: ₦" + total;
+}
