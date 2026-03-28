@@ -104,4 +104,16 @@ function buyProduct(id, name, price) {
 </div>
 
 </body>
-</html>
+</html> <script>
+let cart = [];
+
+function buyProduct(id, name, price) {
+  cart.push({ id, name, price });
+  alert(`${name} added to cart`);
+  updateCart();
+}
+
+function updateCart() {
+  console.log("Cart:", cart);
+}
+</script>
